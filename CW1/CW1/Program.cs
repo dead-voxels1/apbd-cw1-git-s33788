@@ -169,4 +169,9 @@ public class MainClass
     {
         return values.Max();
     }
+
+    public static int CalculateMin(int[] values)
+    {
+        return 0;
+    }
 }
