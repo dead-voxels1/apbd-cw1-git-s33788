@@ -153,4 +153,9 @@ public class MainClass
             Console.ResetColor();
         }
     }
+
+    public static double CalculateAverage(int[] values)
+    {
+        return (double)values.Sum() / values.Length;
+    }
 }
