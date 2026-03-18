@@ -174,4 +174,9 @@ public class MainClass
     {
         return values.Min();
     }
+
+    public static void PrintHello()
+    {
+        Console.WriteLine("Hello, World!");
+    }
 }
