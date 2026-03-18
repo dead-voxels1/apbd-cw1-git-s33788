@@ -8,10 +8,57 @@ public class MainClass
 
     public static void Main(String[] args)
     {
-        AddTask(new ToDoTask("gym"));
-        PrintNextTask();
-        CompleteNextTask();
-        CompleteNextTask();
+        Console.WriteLine("-TODO-");
+        Console.WriteLine("Dostępne komendy: add, list, next, done, exit");
+
+        while (true)
+        {
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write("\n> ");
+            string command = Console.ReadLine()?.ToLower() ?? "";
+
+            switch (command)
+            {
+                case "add":
+                    Console.Write("Nazwa zadania: ");
+                    string name = Console.ReadLine() ?? "";
+                    Console.Write("Opis: ");
+                    string desc = Console.ReadLine() ?? "";
+                    Console.Write("Priorytet (liczba): ");
+                    if (int.TryParse(Console.ReadLine(), out int priority))
+                    {
+                        AddTask(new ToDoTask(name, desc, priority));
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Błąd: Priorytet musi być liczbą!");
+                        Console.ResetColor();
+                    }
+                    break;
+
+                case "list":
+                    PrintToDoList();
+                    break;
+
+                case "next":
+                    if (toDo.Count > 0) PrintNextTask();
+                    else Console.WriteLine("Lista jest pusta.");
+                    break;
+
+                case "done":
+                    CompleteNextTask();
+                    break;
+
+                case "exit":
+                    Console.WriteLine("Zamykanie... Do zobaczenia!");
+                    return;
+
+                default:
+                    Console.WriteLine("Nieznana komenda. Spróbuj: add, list, next, done, exit.");
+                    break;
+            }
+        }
     }
 
     public static void AddTask(ToDoTask task)
