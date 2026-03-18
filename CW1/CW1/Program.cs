@@ -71,6 +71,8 @@ public class MainClass
             {
                 (toDo[index-1], toDo[index]) = (toDo[index], toDo[index-1]);
                 index--;
+                
+                
             }
         }
         else
