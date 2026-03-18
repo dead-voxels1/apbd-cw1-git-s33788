@@ -156,6 +156,10 @@ public class MainClass
 
     public static double CalculateAverage(int[] values)
     {
-        return (double)values.Sum() / values.Length;
+        if (values.Length == 0)
+        {
+            return 0.0;
+        }
+        else return (double)values.Sum() / values.Length;
     }
 }
