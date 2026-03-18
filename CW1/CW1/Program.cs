@@ -172,6 +172,6 @@ public class MainClass
 
     public static int CalculateMin(int[] values)
     {
-        return 0;
+        return values.Min();
     }
 }
