@@ -8,7 +8,10 @@ public class MainClass
 
     public static void Main(String[] args)
     {
-        
+        AddTask(new ToDoTask("gym"));
+        PrintNextTask();
+        CompleteNextTask();
+        CompleteNextTask();
     }
 
     public static void AddTask(ToDoTask task)
@@ -35,18 +38,21 @@ public class MainClass
         }
     }
 
-    public static void CompleteTask(ToDoTask task)
+    public static void CompleteTask(string taskName)
     {
-        if (toDo.All(t => t.Name != task.Name))
+        if (toDo.All(t => t.Name != taskName))
         {
-            toDo.Remove(task);
+            toDo.RemoveAll(t => t.Name == taskName);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Task " + taskName + " completed");
+            Console.ResetColor();
         }
         else
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("Task ");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("\""+task.Name +"\"");
+            Console.Write("\""+taskName +"\"");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(" does not exist");
             Console.ResetColor();
@@ -66,6 +72,37 @@ public class MainClass
             Console.Write(" " + t.Description);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" " +  t.Priority);
+            Console.ResetColor();
+        }
+    }
+
+    public static void PrintNextTask()
+    {
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.Write("Next Task -> ");
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.Write(toDo[0].Name);
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.Write(" " + toDo[0].Description);
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(" " +  toDo[0].Priority);
+        Console.ResetColor();
+    }
+
+    public static void CompleteNextTask()
+    {
+        if (toDo.Count > 0)
+        {
+            string taskName = toDo[0].Name;
+            toDo.RemoveAt(0);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Task " + taskName + " completed");
+            Console.ResetColor();
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("Lista pusta!");
             Console.ResetColor();
         }
     }
