@@ -174,4 +174,9 @@ public class MainClass
     {
         return values.Min();
     }
+
+    public static int CalculateSum(int[] values)
+    {
+        return values.Sum();
+    }
 }
